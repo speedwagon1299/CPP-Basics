@@ -1,32 +1,39 @@
 #include <iostream>
-
 using namespace std;
-int binSearch(int l, int u, int s, int arr[])
+void bubbleSortRec(int arr[], int n, int i)
 {
-    int mid = (l+u)/2;
-    if(l > u)
-        return -2;
-    else if(arr[mid] > s)
-        return binSearch(l,mid-1,s,arr);
-    else if(arr[mid] < s)
-        return binSearch(mid+1,u,s,arr);
+    int swap;
+    if(i == n-2)
+        return;
     else
-        return mid;
+    {
+        for(int j = 0; j < n-1-i;j++)
+        {
+            if(arr[j] > arr[j+1])
+            {
+                swap = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = swap;
+            }
+        }
+        return bubbleSortRec(arr,n,i+1);
+    }
 }
 int main()
 {
-    cout << "Enter the size of the array: " << endl;
-    int n;
-    cin >> n;
-    cout << "\nEnter the elements of the array: " << endl;
-    int arr[n];
-    for(int i = 0; i < n; i++)
+    cout << "Enter the number of elements of the array: " << endl;
+    int num;
+    cin >> num;
+    int arr[num];
+    cout << "Enter the elements of the array:" << endl;
+    for(int i = 0; i < num; i++)
     {
         cin >> arr[i];
     }
-    cout << "\nEnter the element to be searched: " << endl;
-    int s;
-    cin >> s;
-    cout << "\n\nElement found at position " << binSearch(0,n-1,s,arr)+1 << endl;
+    bubbleSortRec(arr,num,0);
+    for(int i = 0; i < num; i++)
+    {
+        cout << arr[i] << " " << flush;
+    }
     return 0;
 }
