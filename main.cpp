@@ -1,29 +1,39 @@
 #include <iostream>
-#include <string>
 using namespace std;
-
-int main()
+void bubbleSortRec(int arr[], int n, int i)
 {
-    cout << "Enter the string to be altered: " << endl;
-    string str;
-    //cin.get(str,50);
-    getline(cin,str);
-    int count;  //to store length of inputted string
-    char swap;  //external variable to swap the elements
-    for(int i = 0; str[i] != '\0'; i++)
-        count++;
-    for(int i = 0; i < (count-1); i++)
+    int swap;
+    if(i == n-2)
+        return;
+    else
     {
-        for(int j = 0; j < (count-i-1); j++)
+        for(int j = 0; j < n-1-i;j++)
         {
-            if(str[j] > str[j+1])
+            if(arr[j] > arr[j+1])
             {
-                swap = str[j];
-                str[j] = str[j+1];
-                str[j+1] = swap;
+                swap = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = swap;
             }
         }
+        return bubbleSortRec(arr,n,i+1);
     }
-    cout << "\n\nString in alphabetical order : " << str << endl;
+}
+int main()
+{
+    cout << "Enter the number of elements of the array: " << endl;
+    int num;
+    cin >> num;
+    int arr[num];
+    cout << "Enter the elements of the array:" << endl;
+    for(int i = 0; i < num; i++)
+    {
+        cin >> arr[i];
+    }
+    bubbleSortRec(arr,num,0);
+    for(int i = 0; i < num; i++)
+    {
+        cout << arr[i] << " " << flush;
+    }
     return 0;
 }
