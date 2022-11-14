@@ -1,21 +1,32 @@
 #include <iostream>
+
 using namespace std;
+int binSearch(int l, int u, int s, int arr[])
+{
+    int mid = (l+u)/2;
+    if(l > u)
+        return -2;
+    else if(arr[mid] > s)
+        return binSearch(l,mid-1,s,arr);
+    else if(arr[mid] < s)
+        return binSearch(mid+1,u,s,arr);
+    else
+        return mid;
+}
 int main()
 {
-    cout << "Enter the two numbers to be checked: " << endl;
-    int num1, num2;
-    cin >> num1;
-    cin >> num2;
-    int sum1 = 1, sum2 = 1;
-    for(int i = 2; i <= num1/2; i++)
-        if(num1%i == 0)
-            sum1+=i;
-    for(int i = 2; i <= num2/2; i++)
-        if(num2%i == 0)
-            sum2+= i;
-    if(num1 == sum2 && num2 == sum1)
-        cout << "The numbers are amicable" << endl;
-    else
-        cout << "The numbers are not amicable" << endl;
+    cout << "Enter the size of the array: " << endl;
+    int n;
+    cin >> n;
+    cout << "\nEnter the elements of the array: " << endl;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << "\nEnter the element to be searched: " << endl;
+    int s;
+    cin >> s;
+    cout << "\n\nElement found at position " << binSearch(0,n-1,s,arr)+1 << endl;
     return 0;
 }
