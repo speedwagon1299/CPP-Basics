@@ -6,87 +6,49 @@ int main()
     cout << "Enter the number to be checked:" << endl;
     int num, flag = 0, count = 0;
     cin >> num;
-    int input = num;    //saving unaltered value of num
+    int input = num;
+    int rev = 0;
     while(num > 0)
     {
-        num/= 10;
-        count++;    //counting digits
+        rev = rev*10 + num%10;
+        num/=10;
+        count++;
     }
-    num = input;    //giving num its original value
-    int arr1[10], arr2[10];     //arrays to store each half part of the number
-    char prop;  //to see if num has even or odd number of digits
-    if(count%2 == 0)
-        prop = 'e';
-    else
-        prop = 'o';
-    switch(prop)
+    num = input;
+    int arr[count];
+    for(int i = 0; i < count; i++)
     {
-        case 'o':
-        {
-             int mid = 0;
-            for(int i = count-1; i >= count/2; i--)
-            {
-                arr2[i - count/2] = num%10;     //making array with the second half of the number
-                mid = num%10;
-                num/=10;
-            }
-            arr1[count/2] = mid;
-            for(int i = (count/2); i >= 0; i--)
-            {
-                arr1[i] = num%10;   //making an array with the first half of the number
-                num/=10;
-            }
-            for(int i = 0; i < count/2; i++)
-            {
-                if(arr1[i] > arr1[i+1])
-                {
-                    flag = 1;   //flag if its not in ascending order
-                    break;
-                }
-                if(arr2[i] < arr2[i+1])
-                {
-                    flag = 1;   //flag if its not in descending order
-                    break;
-                }
-            }
-        }
-        break;
-        case 'e':
-        {
-            for(int i = count-1; i >= count/2; i--)
-            {
-                arr2[i - count/2] = num%10;     //making array with the second half of the number
-                num/=10;
-            }
-            for(int i = (count/2 - 1); i >= 0; i--)
-            {
-                arr1[i] = num%10;   //making an array with the first half of the number
-                num/=10;
-            }
-            for(int i = 0; i < (count/2-1); i++)
-            {
-                if(arr1[i] > arr1[i+1])
-                {
-                    flag = 1;   //flag if its not in ascending order
-                    break;
-                }
-                if(arr2[i] < arr2[i+1])
-                {
-                    flag = 1;   //flag if its not in descending order
-                    break;
-                }
-            }
-        }
-        break;
-        default:
-        {
-            cout << "Invalid" << endl;
-            system(0);
-        }+
-
+        arr[i] = rev%10;
+        rev/= 10;
     }
-    if(count <= 2)  //if count less than two it automatically is not a hill number
+    cout << endl;
+    int max = 0;
+    for(int i = 1; i < count; i++)
+        if(arr[i] > arr[max])
+        max = i;
+    if(max == count-1)
         flag = 1;
+    int arr1[max+1],arr2[count-max-1];
+    for(int i = 0; i <= max; i++)
+        arr1[i] = arr[i];
+    for(int i = max; i < count; i++)
+        arr2[i-max] = arr[i];
+    for(int i = 0; i < max; i++)
+    {
+        if(arr1[i] >= arr1[i+1])
+        {
+            flag = 1;
+            break;
+        }
+    }
+    for(int i = 0; i < count-max-2; i++)
+    {
+        if(arr2[i] <= arr2[i+1])
+        {
+            flag = 1;
+            break;
+        }
+    }
     if(flag == 1)
     {
         cout << "It is not a hill number" << endl;
