@@ -125,7 +125,55 @@ void explainPQueue() //priority queue
 
     //minimum heap
     priority_queue<int, vector<int>, greater<int>>pq2;
-
+    pq.push(10);
+    pq.push(5);
+    pq.push(6); //{5,6,10} ie ascending order
+    //pq.top() = 5 & pq.pop() removes 5
+}
+void explainSet()
+{
+    set<int> s; //sorted and unique storage of elements
+    s.insert(1);
+    s.emplace(2);
+    s.emplace(2);   //no change
+    s.emplace(4);
+    s.insert(3);    //{1,2,3,4}
+    auto it = s.find(3);    //it points to address of 3
+    //if find(<unlisted ele>) => s.end() [address]
+    s.erase(it); //erases 3 in constant time
+    s.erase(2); //erases 2 in logarithmic time
+    //erase can also be done for a range
+    //s.count(<ele>) returns 1 if ele is present and 0 if not
+    //lower_bound IN GENERAL first occurence and upper_bound the last
+}
+void explainMultiset()
+{
+    multiset<int> ms;   //set but not unique
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1); //{1,1,1,1}
+    //ms.erase(1) erases all occurances of 1
+    ms.erase(ms.find(1));  //{_,1,1,1} => {1,1,1}
+}
+void explainUset()
+{
+    unordered_set<int> us;
+    //randomised order, no lower/upper bound function
+    //usual time complexity O(1), very rare cases O(N)
+}
+void explainMap()
+{
+    map<int, int> mp1;  //first parameter is key, second is value, stored in sorted key order
+    map<int,pair<int,int>>mp2;
+    map<pair<int,int>,int>mp3;
+    mp1[1] = 2;
+    mp1.emplace(3,1);
+    mp1.insert({2,4});
+    cout << endl;
+    for(auto i : mp1)
+    cout << i.first << " " << i.second << endl;
+    //mp1[<out_of_bounds>] = 0 (returns)
 }
 int main()
 {
@@ -136,5 +184,10 @@ int main()
     explainStack();
     explainQueue();
     explainPQueue();
-    return 0;
+    explainSet();
+    explainMultiset();
+    explainUset();
+    explainMap();   //works in log of time
+    //Multi and Unordered Map like gyaan for set (unordered => (mostly) O(1))
+     return 0;
 }
