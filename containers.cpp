@@ -14,30 +14,127 @@ void explainPair()  //pair can be a datatype, lies inside  utility library
 
         pair<int,int> arr[] = {{1,2},{2,5},{5,1}};
         //arr[2].first
-    }
-    void explainVector()
-    {
-        vector<int> v1;
-        v1.push_back(1);
-        v1.emplace_back(2);
-        //emplace is slightly faster than push
-        //dynamically increases size of array 
+}
+void explainVector()
+{
+    vector<int> v1;
+    v1.push_back(1);
+    v1.emplace_back(2);
+    //emplace is slightly faster than push
+    //dynamically increases size of array 
 
-        vector<pair<int,int>> v2;
-        //pair in vector allowed
+    vector<pair<int,int>> v2;
+    //pair in vector allowed
 
-        v2.push_back({1,2});
-        //elements must be pushed in as a pair
-        v2.emplace_back(1,2);
-        //assumes as a pair
+    v2.push_back({1,2});
+    //elements must be pushed in as a pair
+    v2.emplace_back(1,2);
+    //assumes as a pair
 
 
-        vector<int> v3(5,100); //{100,100,...100}
-        vector<int> v4(5); //{garbage/0,...}
-        vector<int> v5(v4); //copy of v1
+    vector<int> v3(5,100); //{100,100,...100} last parameter is ELEMENT
+    vector<int> v4(5); //{garbage/0,...}
+    vector<int> v5(v4); //copy of v1
         
-        vector<int> v6 = {1,2,3,4,5};   //v1[2] = 3
-        vector<int>::iterator it = v1.begin();
-        //iterator is pointer of vector element address
-        it++;
+    vector<int> v6 = {1,2,3,4,5};   //v1[2] = 3
+    vector<int>::iterator it1 = v1.begin();
+    //iterator is pointer of vector element address
+
+
+    vector<int>::iterator it2 = v6.end();    //points to space RIGHT after LAST => use --it
+    cout << *(--it2) << " " << *(--v6.rend()) << endl; //rend and rbegin reversed vector
+    //v6.back() ==> element at the last pos
+
+    // for(auto it3 = v6.begin(); it3 != v6.end(); it3++)
+    // {
+    //     cout << *(it3) << endl;
+    // }
+    // for(auto i : v6)    //for each 
+    // {
+    //     cout << i << endl;
+    // }
+
+
+    //v6 = {1,2,3,4,5}
+    v6.erase(v6.begin()+1, v6.end()-1); //remove (indices) 1,2,3 (elements) 2,3,4
+    v6 = {1,2,3,4,5};
+    vector<int> v7(10,20);
+    v7.insert(v7.begin()+2,21);     //insert 21 at 2nd index
+    v7.insert(v7.begin()+1,2,22);   //insert 2 22s at 1st index
+
+    //to insert one vector into another
+    v7.insert(v7.begin()+2,v6.begin(),v6.end());
+    for(int i : v7)
+    {
+        cout << i << " ";
     }
+    //v7.size(=> size of vector)
+    //v7.pop_back() removes the last element, doesnt give a return value
+
+    //v1.swap(v2) to swap two vectors, v1.clear() to make the vector empty, v1.empty() True or False
+}
+void explainList()
+{
+    list<int> ls = {1,2,3,4,5};
+    ls.push_back(6);    //or emplace
+    ls.push_front(0);   //or emplace
+    cout << endl;   //doubly linked list to reduced time complexity when compared to insert in vector
+    for(int i : ls)
+    cout << i;
+    //rest similar to vectors
+}   
+void explainDeque()
+{
+    deque<int> dq = {1,2,3,4,5};
+    dq.pop_back();
+    dq.pop_front();
+    cout << dq.back(); //stores value of last element
+    cout << endl;
+    for(int i : dq)
+    cout << i;
+}
+void explainStack()
+{
+    stack<int> st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+    st.push(5);
+    cout << "\n" << st.top() << endl;
+    st.pop();
+    //also st.size() and st.empty()
+}
+void explainQueue()
+{
+    queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    // q.front() is the first element and q.back() is the last element
+    q.pop();    // pop the first element because FIFO
+}
+void explainPQueue() //priority queue
+{
+    //maximum heap
+    priority_queue<int>pq;
+    pq.push(10);
+    pq.push(5);
+    pq.push(6); //{10,6,5} ie descending order
+    //pq.top() = 10 & pq.pop() removes 10
+
+    //minimum heap
+    priority_queue<int, vector<int>, greater<int>>pq2;
+
+}
+int main()
+{
+    explainPair();
+    explainVector();
+    explainList();
+    explainDeque();
+    explainStack();
+    explainQueue();
+    explainPQueue();
+    return 0;
+}
