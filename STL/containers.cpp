@@ -173,8 +173,14 @@ void explainMap()
     cout << endl;
     for(auto i : mp1)
     cout << i.first << " " << i.second << endl;
+    for(auto i = mp1.rbegin(); i > mp1.rend(); i--)
+    {
+        cout << "works";
+    }
     //mp1[<out_of_bounds>] = 0 (returns)
 }
+
+
 int main()
 {
     explainPair();
