@@ -16,7 +16,7 @@ void explainSort()
     vector<int> v = {1,4,2,7,5};
     v.emplace_back(0);
     sort(v.begin(), v.end());
-    sort(v.begin()+1,v.begin()+4,greater<int>());   //call greater<int> as fucntion 
+    sort(v.begin()+1,v.begin()+4,greater<int>());   //call greater<int> as function 
     for(auto i : v)
     cout << i << " ";
 

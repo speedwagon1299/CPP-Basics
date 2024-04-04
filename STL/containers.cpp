@@ -1,5 +1,4 @@
 //https://takeuforward.org/c/c-stl-tutorial-most-frequent-used-stl-containers/
-
 #include<math.h>
 #include<string.h>
 #include<bits/stdc++.h>
@@ -156,29 +155,29 @@ void explainMultiset()
     //ms.erase(1) erases all occurances of 1
     ms.erase(ms.find(1));  //{_,1,1,1} => {1,1,1}
 }
-void explainUset()
-{
-    unordered_set<int> us;
-    //randomised order, no lower/upper bound function
-    //usual time complexity O(1), very rare cases O(N)
-}
-void explainMap()
-{
-    map<int, int> mp1;  //first parameter is key, second is value, stored in sorted key order
-    map<int,pair<int,int>>mp2;
-    map<pair<int,int>,int>mp3;
-    mp1[1] = 2;
-    mp1.emplace(3,1);
-    mp1.insert({2,4});
-    cout << endl;
-    for(auto i : mp1)
-    cout << i.first << " " << i.second << endl;
-    for(auto i = mp1.rbegin(); i > mp1.rend(); i--)
-    {
-        cout << "works";
-    }
-    //mp1[<out_of_bounds>] = 0 (returns)
-}
+// void explainUset()
+// {
+//     unordered_set<int> us;
+//     //randomised order, no lower/upper bound function
+//     //usual time complexity O(1), very rare cases O(N)
+// }
+// void explainMap()
+// {
+//     map<int, int> mp1;  //first parameter is key, second is value, stored in sorted key order
+//     map<int,pair<int,int>>mp2;
+//     map<pair<int,int>,int>mp3;
+//     mp1[1] = 2;
+//     mp1.emplace(3,1);
+//     mp1.insert({2,4});
+//     cout << endl;
+//     for(auto i : mp1)
+//     cout << i.first << " " << i.second << endl;
+//     for(auto i = mp1.rbegin(); i > mp1.rend(); i--)
+//     {
+//         cout << "works";
+//     }
+//     //mp1[<out_of_bounds>] = 0 (returns)
+// }
 
 
 int main()
@@ -192,8 +191,7 @@ int main()
     explainPQueue();
     explainSet();
     explainMultiset();
-    explainUset();
-    explainMap();   //works in log of time
-    //Multi and Unordered Map like gyaan for set (unordered => (mostly) O(1))
-     return 0;
+    // explainUset();
+    // explainMap();   //works in log of time  
+    return 0;
 }
